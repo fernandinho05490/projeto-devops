@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Serviço da nossa aplicação Python
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - POSTGRES_USER=devops
+      - POSTGRES_PASSWORD=devops
+      - POSTGRES_DB=tasks_db
+
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=devops
+      - POSTGRES_PASSWORD=devops
+      - POSTGRES_DB=tasks_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

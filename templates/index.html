@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps To-Do</title>
+</head>
+<body>
+    <h1>Minhas Tarefas (DevOps Project)</h1>
+    
+    <input type="text" id="taskInput" placeholder="Nova tarefa...">
+    <button onclick="addTask()">Adicionar</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        // Função GET para carregar tarefas
+        async function loadTasks() {
+            const response = await fetch('/tasks');
+            const data = await response.json();
+            const list = document.getElementById('taskList');
+            list.innerHTML = '';
+            data.tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.textContent = task.title;
+                list.appendChild(li);
+            });
+        }
+
+        // Função POST para salvar tarefa via JSON
+        async function addTask() {
+            const input = document.getElementById('taskInput');
+            const title = input.value;
+            
+            await fetch('/tasks', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({title: title})
+            });
+            
+            input.value = '';
+            loadTasks(); // Recarrega a lista
+        }
+
+        // Carrega ao iniciar
+        loadTasks();
+    </script>
+</body>
+</html>

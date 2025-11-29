@@ -1,0 +1,13 @@
+# Arquivos compilados do Python
+__pycache__/
+*.py[cod]
+
+# Variáveis de ambiente (se usarmos depois)
+.env
+
+# Pasta de ambiente virtual (caso você tenha criado uma localmente)
+venv/
+env/
+
+# Arquivos do sistema operacional
+.DS_Store
