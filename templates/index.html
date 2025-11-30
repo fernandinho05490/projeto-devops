@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DevOps To-Do</title>
+    <title>DevOps To-Do Ultimate</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+        ul { list-style: none; padding: 0; }
+        li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc; }
+        .done { text-decoration: line-through; color: gray; }
+        button { cursor: pointer; margin-left: 5px; }
+        .btn-del { background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; }
+        .btn-ok { background: #00C851; color: white; border: none; padding: 5px 10px; border-radius: 4px; }
+    </style>
 </head>
 <body>
-    <h1>Minhas Tarefas - Atualizado autoamticamente!!!</h1>
+    <h1>Minhas Tarefas (Versão Final)</h1>
     
-    <input type="text" id="taskInput" placeholder="Nova tarefa...">
-    <button onclick="addTask()">Adicionar</button>
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="taskInput" placeholder="Nova tarefa..." style="flex-grow: 1; padding: 8px;">
+        <button onclick="addTask()" style="padding: 8px 15px;">Adicionar</button>
+    </div>
 
     <ul id="taskList"></ul>
 
     <script>
-        // Função GET para carregar tarefas
         async function loadTasks() {
             const response = await fetch('/tasks');
             const data = await response.json();
@@ -20,27 +30,58 @@
             list.innerHTML = '';
             data.tasks.forEach(task => {
                 const li = document.createElement('li');
-                li.textContent = task.title;
+                
+                // Texto da tarefa
+                const span = document.createElement('span');
+                span.textContent = task.title;
+                if (task.done) span.classList.add('done');
+                
+                // Botões
+                const div = document.createElement('div');
+                
+                const btnOk = document.createElement('button');
+                btnOk.textContent = task.done ? 'Desfazer' : '✅';
+                btnOk.className = 'btn-ok';
+                btnOk.onclick = () => toggleTask(task.id);
+
+                const btnDel = document.createElement('button');
+                btnDel.textContent = '🗑️';
+                btnDel.className = 'btn-del';
+                btnDel.onclick = () => deleteTask(task.id);
+
+                div.appendChild(btnOk);
+                div.appendChild(btnDel);
+                
+                li.appendChild(span);
+                li.appendChild(div);
                 list.appendChild(li);
             });
         }
 
-        // Função POST para salvar tarefa via JSON
         async function addTask() {
             const input = document.getElementById('taskInput');
-            const title = input.value;
-            
+            if (!input.value) return;
             await fetch('/tasks', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({title: title})
+                body: JSON.stringify({title: input.value})
             });
-            
             input.value = '';
-            loadTasks(); // Recarrega a lista
+            loadTasks();
         }
 
-        // Carrega ao iniciar
+        async function toggleTask(id) {
+            await fetch(`/tasks/${id}`, { method: 'PUT' });
+            loadTasks();
+        }
+
+        async function deleteTask(id) {
+            if(confirm('Tem certeza?')) {
+                await fetch(`/tasks/${id}`, { method: 'DELETE' });
+                loadTasks();
+            }
+        }
+
         loadTasks();
     </script>
 </body>
