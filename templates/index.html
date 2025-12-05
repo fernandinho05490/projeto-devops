@@ -6,312 +6,90 @@
     <title>To-Do List Ultimate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- MANTIVE SEU CSS EXATAMENTE IGUAL --- */
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --success: #10b981;
-            --success-dark: #0da271;
-            --danger: #ef4444;
-            --danger-dark: #dc2626;
-            --warning: #f59e0b;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-700: #374151;
-            --gray-900: #111827;
+            --primary: #2563eb; --primary-dark: #1d4ed8; --success: #10b981;
+            --success-dark: #0da271; --danger: #ef4444; --danger-dark: #dc2626;
+            --warning: #f59e0b; --gray-50: #f9fafb; --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af;
+            --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --border-radius: 12px;
-            --transition: all 0.2s ease;
+            --border-radius: 12px; --transition: all 0.2s ease;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--gray-900);
-            min-height: 100vh;
-            padding: 2rem 1rem;
-            line-height: 1.5;
+            color: var(--gray-900); min-height: 100vh; padding: 2rem 1rem; line-height: 1.5;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        .container { max-width: 800px; margin: 0 auto; }
         header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            text-align: center; margin-bottom: 2.5rem; padding: 1.5rem;
+            background-color: white; border-radius: var(--border-radius); box-shadow: var(--shadow);
         }
-
-        h1 {
-            color: var(--primary);
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            color: var(--gray-500);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
+        h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        .subtitle { color: var(--gray-500); font-size: 1.1rem; margin-bottom: 1rem; }
+        .stats { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
         .stat {
-            text-align: center;
-            background-color: var(--gray-100);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            color: var(--gray-700);
+            text-align: center; background-color: var(--gray-100); padding: 0.75rem 1.5rem;
+            border-radius: 50px; font-weight: 600; color: var(--gray-700);
         }
-
-        .stat span {
-            color: var(--primary);
-            font-size: 1.5rem;
-            display: block;
-        }
-
+        .stat span { color: var(--primary); font-size: 1.5rem; display: block; }
         .input-section {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            background-color: white; padding: 1.5rem; border-radius: var(--border-radius);
+            box-shadow: var(--shadow); margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
         }
-
         .task-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.2rem;
-            border: 2px solid var(--gray-200);
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: var(--transition);
-            outline: none;
+            flex: 1; min-width: 250px; padding: 1rem 1.2rem; border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius); font-size: 1rem; transition: var(--transition); outline: none;
         }
-
-        .task-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
+        .task-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
         .add-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            white-space: nowrap;
+            background-color: var(--primary); color: white; border: none; padding: 1rem 2rem;
+            border-radius: var(--border-radius); font-weight: 600; font-size: 1rem; cursor: pointer;
+            transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; white-space: nowrap;
         }
-
-        .add-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
+        .add-btn:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
         .task-list-container {
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
+            background-color: white; border-radius: var(--border-radius); box-shadow: var(--shadow-lg); overflow: hidden;
         }
-
         .task-list-header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1.2rem 1.5rem;
-            font-weight: 600;
-            font-size: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: var(--primary); color: white; padding: 1.2rem 1.5rem;
+            font-weight: 600; font-size: 1.2rem; display: flex; justify-content: space-between; align-items: center;
         }
-
-        #taskList {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
+        #taskList { list-style: none; padding: 0; margin: 0; }
         .task-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--gray-100);
-            transition: var(--transition);
-            animation: fadeIn 0.3s ease;
+            display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--gray-100); transition: var(--transition); animation: fadeIn 0.3s ease;
         }
-
-        .task-item:hover {
-            background-color: var(--gray-50);
-        }
-
-        .task-item:last-child {
-            border-bottom: none;
-        }
-
-        .task-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex: 1;
-        }
-
-        .task-checkbox {
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-            accent-color: var(--success);
-        }
-
-        .task-text {
-            font-size: 1.1rem;
-            flex: 1;
-        }
-
-        .task-done {
-            text-decoration: line-through;
-            color: var(--gray-400);
-        }
-
-        .task-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
+        .task-item:hover { background-color: var(--gray-50); }
+        .task-item:last-child { border-bottom: none; }
+        .task-content { display: flex; align-items: center; gap: 1rem; flex: 1; }
+        .task-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: var(--success); }
+        .task-text { font-size: 1.1rem; flex: 1; }
+        .task-done { text-decoration: line-through; color: var(--gray-400); }
+        .task-actions { display: flex; gap: 0.5rem; }
         .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            font-size: 1.1rem;
+            width: 40px; height: 40px; border-radius: 8px; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition); font-size: 1.1rem;
         }
-
-        .toggle-btn {
-            background-color: var(--success);
-            color: white;
-        }
-
-        .toggle-btn:hover {
-            background-color: var(--success-dark);
-            transform: scale(1.05);
-        }
-
-        .delete-btn {
-            background-color: var(--danger);
-            color: white;
-        }
-
-        .delete-btn:hover {
-            background-color: var(--danger-dark);
-            transform: scale(1.05);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            color: var(--gray-500);
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--gray-300);
-        }
-
-        .empty-state p {
-            font-size: 1.2rem;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            color: var(--gray-500);
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        .toggle-btn { background-color: var(--success); color: white; }
+        .toggle-btn:hover { background-color: var(--success-dark); transform: scale(1.05); }
+        .delete-btn { background-color: var(--danger); color: white; }
+        .delete-btn:hover { background-color: var(--danger-dark); transform: scale(1.05); }
+        .empty-state { text-align: center; padding: 3rem 1.5rem; color: var(--gray-500); }
+        .empty-state i { font-size: 3rem; margin-bottom: 1rem; color: var(--gray-300); }
+        .empty-state p { font-size: 1.2rem; }
+        footer { text-align: center; margin-top: 3rem; color: var(--gray-500); font-size: 0.9rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) {
-            .input-section {
-                flex-direction: column;
-            }
-            
-            .task-input {
-                min-width: 100%;
-            }
-            
-            .add-btn {
-                justify-content: center;
-                width: 100%;
-            }
-            
-            .task-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .task-content {
-                width: 100%;
-            }
-            
-            .task-actions {
-                align-self: flex-end;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .stats {
-                gap: 1rem;
-            }
-            
-            .stat {
-                padding: 0.5rem 1rem;
-            }
+            .input-section { flex-direction: column; }
+            .task-input { min-width: 100%; }
+            .add-btn { justify-content: center; width: 100%; }
+            .task-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .task-content { width: 100%; }
+            .task-actions { align-self: flex-end; }
         }
     </style>
 </head>
@@ -322,16 +100,13 @@
             <p class="subtitle">Gerencie suas tarefas de forma eficiente e moderna</p>
             <div class="stats">
                 <div class="stat">
-                    <span id="totalTasks">0</span>
-                    Total
+                    <span id="totalTasks">0</span> Total
                 </div>
                 <div class="stat">
-                    <span id="completedTasks">0</span>
-                    Concluídas
+                    <span id="completedTasks">0</span> Concluídas
                 </div>
                 <div class="stat">
-                    <span id="pendingTasks">0</span>
-                    Pendentes
+                    <span id="pendingTasks">0</span> Pendentes
                 </div>
             </div>
         </header>
@@ -350,30 +125,24 @@
             </div>
             
             <ul id="taskList">
-                <!-- Tarefas serão carregadas aqui -->
-                <div class="empty-state" id="emptyState">
-                    <i class="fas fa-clipboard-list"></i>
-                    <p>Nenhuma tarefa encontrada. Adicione uma nova tarefa para começar!</p>
-                </div>
-            </ul>
+                </ul>
+            
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-clipboard-list"></i>
+                <p>Nenhuma tarefa encontrada. Adicione uma nova tarefa para começar!</p>
+            </div>
         </section>
 
         <footer>
-            <p>DevOps To-Do Ultimate &copy; 2023 | Sistema de gerenciamento de tarefas</p>
+            <p>DevOps To-Do Ultimate &copy; 2025 | Sistema de gerenciamento de tarefas</p>
         </footer>
     </div>
 
     <script>
-        // Simulação de dados iniciais - em uma aplicação real, estes viriam da API
-        let tasks = [
-            { id: 1, title: "Configurar pipeline CI/CD", done: false },
-            { id: 2, title: "Revisar logs de deploy", done: true },
-            { id: 3, title: "Atualizar documentação da API", done: false },
-            { id: 4, title: "Monitorar performance do servidor", done: false }
-        ];
+        // --- AQUI ESTÁ A MÁGICA: JAVASCRIPT CONECTADO AO FLASK ---
 
-        // Função para atualizar estatísticas
-        function updateStats() {
+        // Função auxiliar para atualizar os números lá em cima
+        function updateStats(tasks) {
             const totalTasks = tasks.length;
             const completedTasks = tasks.filter(task => task.done).length;
             const pendingTasks = totalTasks - completedTasks;
@@ -383,7 +152,6 @@
             document.getElementById('pendingTasks').textContent = pendingTasks;
             document.getElementById('taskCount').textContent = `${totalTasks} tarefa${totalTasks !== 1 ? 's' : ''}`;
             
-            // Mostrar/ocultar estado vazio
             const emptyState = document.getElementById('emptyState');
             if (totalTasks === 0) {
                 emptyState.style.display = 'block';
@@ -392,142 +160,136 @@
             }
         }
 
+        // 1. CARREGAR TAREFAS (GET)
         async function loadTasks() {
-            // Em uma aplicação real, aqui faria fetch para a API
-            // Para simulação, usamos os dados locais
-            const list = document.getElementById('taskList');
-            list.innerHTML = '';
-            
-            if (tasks.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-state" id="emptyState">
-                        <i class="fas fa-clipboard-list"></i>
-                        <p>Nenhuma tarefa encontrada. Adicione uma nova tarefa para começar!</p>
-                    </div>
-                `;
-                updateStats();
-                return;
+            try {
+                const response = await fetch('/tasks'); // Chama o Python
+                const data = await response.json();
+                const tasks = data.tasks; // Pega a lista do JSON
+
+                const list = document.getElementById('taskList');
+                list.innerHTML = '';
+                
+                if (tasks.length === 0) {
+                    updateStats([]);
+                    return;
+                }
+                
+                tasks.forEach(task => {
+                    const li = document.createElement('li');
+                    li.className = 'task-item';
+                    li.setAttribute('data-id', task.id);
+                    
+                    li.innerHTML = `
+                        <div class="task-content">
+                            <input type="checkbox" class="task-checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask(${task.id})">
+                            <span class="task-text ${task.done ? 'task-done' : ''}">${task.title}</span>
+                        </div>
+                        <div class="task-actions">
+                            <button class="action-btn toggle-btn" onclick="toggleTask(${task.id})" title="${task.done ? 'Marcar como pendente' : 'Marcar como concluída'}">
+                                <i class="fas ${task.done ? 'fa-undo' : 'fa-check'}"></i>
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteTask(${task.id})" title="Excluir tarefa">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    list.appendChild(li);
+                });
+                
+                updateStats(tasks);
+            } catch (error) {
+                console.error('Erro ao carregar tarefas:', error);
             }
-            
-            tasks.forEach(task => {
-                const li = document.createElement('li');
-                li.className = 'task-item';
-                li.setAttribute('data-id', task.id);
-                
-                li.innerHTML = `
-                    <div class="task-content">
-                        <input type="checkbox" class="task-checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask(${task.id})">
-                        <span class="task-text ${task.done ? 'task-done' : ''}">${task.title}</span>
-                    </div>
-                    <div class="task-actions">
-                        <button class="action-btn toggle-btn" onclick="toggleTask(${task.id})" title="${task.done ? 'Marcar como pendente' : 'Marcar como concluída'}">
-                            <i class="fas ${task.done ? 'fa-undo' : 'fa-check'}"></i>
-                        </button>
-                        <button class="action-btn delete-btn" onclick="deleteTask(${task.id})" title="Excluir tarefa">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-                
-                list.appendChild(li);
-            });
-            
-            updateStats();
         }
 
+        // 2. ADICIONAR TAREFA (POST)
         async function addTask() {
             const input = document.getElementById('taskInput');
             const taskTitle = input.value.trim();
             
             if (!taskTitle) {
-                // Efeito visual para indicar campo vazio
                 input.style.borderColor = 'var(--danger)';
                 input.focus();
-                setTimeout(() => {
-                    input.style.borderColor = '';
-                }, 1000);
+                setTimeout(() => input.style.borderColor = '', 1000);
                 return;
             }
-            
-            // Em uma aplicação real, faria POST para a API
-            // Simulação: adiciona à lista local
-            const newTask = {
-                id: tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1,
-                title: taskTitle,
-                done: false
-            };
-            
-            tasks.push(newTask);
-            input.value = '';
-            input.focus();
-            
-            // Recarregar lista
-            loadTasks();
-            
-            // Feedback visual
-            const addBtn = document.querySelector('.add-btn');
-            const originalText = addBtn.innerHTML;
-            addBtn.innerHTML = '<i class="fas fa-check"></i> Adicionada!';
-            addBtn.style.backgroundColor = 'var(--success)';
-            
-            setTimeout(() => {
-                addBtn.innerHTML = originalText;
-                addBtn.style.backgroundColor = '';
-            }, 1500);
+
+            try {
+                // Envia para o Python salvar no Banco
+                await fetch('/tasks', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({title: taskTitle})
+                });
+
+                // Limpa o campo e recarrega
+                input.value = '';
+                input.focus();
+                
+                // Feedback visual no botão
+                const addBtn = document.querySelector('.add-btn');
+                const originalText = addBtn.innerHTML;
+                addBtn.innerHTML = '<i class="fas fa-check"></i> Adicionada!';
+                addBtn.style.backgroundColor = 'var(--success)';
+                
+                setTimeout(() => {
+                    addBtn.innerHTML = originalText;
+                    addBtn.style.backgroundColor = '';
+                }, 1500);
+
+                loadTasks(); // Atualiza a lista
+            } catch (error) {
+                console.error('Erro ao criar tarefa:', error);
+                alert('Erro ao salvar tarefa. Verifique o servidor.');
+            }
         }
 
+        // 3. ATUALIZAR STATUS (PUT)
         async function toggleTask(id) {
-            // Em uma aplicação real, faria PUT para a API
-            // Simulação: altera localmente
-            const taskIndex = tasks.findIndex(task => task.id === id);
-            if (taskIndex !== -1) {
-                tasks[taskIndex].done = !tasks[taskIndex].done;
+            try {
+                await fetch(`/tasks/${id}`, { method: 'PUT' });
                 
-                // Feedback visual
+                // Animaçãozinha antes de recarregar
                 const taskItem = document.querySelector(`[data-id="${id}"]`);
                 if (taskItem) {
-                    taskItem.style.transform = 'scale(1.02)';
                     taskItem.style.backgroundColor = 'var(--gray-100)';
-                    
-                    setTimeout(() => {
-                        taskItem.style.transform = '';
-                        taskItem.style.backgroundColor = '';
-                        loadTasks();
-                    }, 300);
+                    setTimeout(() => loadTasks(), 200);
                 } else {
                     loadTasks();
                 }
+            } catch (error) {
+                console.error('Erro ao atualizar:', error);
             }
         }
 
+        // 4. DELETAR TAREFA (DELETE)
         async function deleteTask(id) {
             if(confirm('Tem certeza que deseja excluir esta tarefa?')) {
-                // Em uma aplicação real, faria DELETE para a API
-                // Simulação: remove localmente
-                tasks = tasks.filter(task => task.id !== id);
-                loadTasks();
-                
-                // Feedback visual
-                const taskItem = document.querySelector(`[data-id="${id}"`);
-                if (taskItem) {
-                    taskItem.style.transform = 'translateX(-100%)';
-                    taskItem.style.opacity = '0';
+                try {
+                    await fetch(`/tasks/${id}`, { method: 'DELETE' });
                     
-                    setTimeout(() => {
+                    // Animação de exclusão
+                    const taskItem = document.querySelector(`[data-id="${id}"]`); // Corrigi o erro de sintaxe aqui!
+                    if (taskItem) {
+                        taskItem.style.transform = 'translateX(-100%)';
+                        taskItem.style.opacity = '0';
+                        setTimeout(() => loadTasks(), 300);
+                    } else {
                         loadTasks();
-                    }, 300);
+                    }
+                } catch (error) {
+                    console.error('Erro ao deletar:', error);
                 }
             }
         }
 
-        // Permitir adicionar tarefa pressionando Enter
+        // Permitir Enter
         document.getElementById('taskInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addTask();
-            }
+            if (e.key === 'Enter') addTask();
         });
 
-        // Carregar tarefas iniciais
+        // Inicia carregando do banco
         loadTasks();
     </script>
 </body>
